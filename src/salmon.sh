@@ -14,8 +14,8 @@ do
   salmon quant \
   --libType A\
   --index processed_data/Salmonindex\
-  --mates1 processed_data/paired/${seq}_1.fastq.gz \
-  --mates2 processed_data/paired/${seq}_2.fastq.gz \
+  --mates1 processed_data/paired/${seq}_1.fq.gz \
+  --mates2 processed_data/paired/${seq}_2.fq.gz \
   --threads 3 \
-  --output processed_data/$seq
+  --output processed_data/salmon/$seq
 done
