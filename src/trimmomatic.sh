@@ -14,7 +14,12 @@ mkdir paired
 cd ..
 for reads in $Names
 do
-  java -jar /softwares/Trimmomatic-0.39/trimmomatic-0.39.jar PE data/${reads}_1.fastq.gz data/${reads}_2.fastq.gz processed_data/paired/${reads}_1.fq.gz \
-  processed_data/unpaired/${reads}_1.fq.gz paired/${reads}_2.fq.gz processed_data/unpaired/${reads}_2.fq.gz \
-  ILLUMINACLIP:TruSeq3-PE.fa:2:30:10:2:keepBothReads LEADING:3 TRAILING:3 MINLEN:36
+  java -jar /softwares/Trimmomatic-0.39/trimmomatic-0.39.jar PE \
+  data/${reads}_1.fastq.gz \
+  data/${reads}_2.fastq.gz \
+  processed_data/paired/${reads}_1.fq.gz \
+  processed_data/unpaired/${reads}_1.fq.gz \
+  processed_data/paired/${reads}_2.fq.gz \
+  processed_data/unpaired/${reads}_2.fq.gz \
+  ILLUMINACLIP:/softwares/Trimmomatic-0.39/adapters/TruSeq3-PE.fa:2:30:10:2:keepBothReads LEADING:3 TRAILING:3 MINLEN:36 -threads 3
 done
