@@ -3,7 +3,7 @@ library("DESeq2")
 library("GenomicAlignments")
 paths=c("SRR5564861","SRR5564862","SRR5564863","SRR5564855","SRR5564856","SRR5564857")
 fullpaths=file.path("processed_data/salmon",paths,"quant.sf") #concaténation avec file.path très pratique
-
+tx2gn <- read.table("data/tx2gn.csv", h=T, sep=',', as.is=T)
 
 data=tximport(fullpaths,'salmon', tx2gene = tx2gn)#le round qui est après peut être remplacé par la fonction intégrée countsFromAbundance
 
@@ -13,7 +13,7 @@ plot(log1p(data$counts[,1]),log1p(data$counts[,4]))
 plot(log1p(data$counts[,1]),log1p(data$counts[,2]))
 
 
-colData=data.frame(paths,c("Arg1","Arg1","Arg1","WT","WT","WT"))
+colData=data.frame(paths,factor(c("Alg1","Alg1","Alg1","WT","WT","WT"),levels = c("WT", "Alg1")))
 colnames(colData)=c("sample","treatment")
 dp=DESeqDataSetFromMatrix(round(data$counts),colData = colData,design=~treatment)
 res=DESeq(dp,test="LRT", reduced=~1)
@@ -49,7 +49,7 @@ plotMA(results,ylim=c(-12,12))
 resultsNames(res) # lists the coefficients
 
 
-GOup = file("results/fGOup.data", "w"wormRef)#création d'un fichier en mode écriture
+GOup = file("results/fGOup.data", "w")#création d'un fichier en mode écriture
 GOWup = file("results/fGOWup.data", "w")
 GOdown = file("results/fGOdown.data", "w")#création d'un fichier en mode écriture
 GOWdown = file("results/fGOWdown.data", "w")
