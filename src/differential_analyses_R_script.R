@@ -44,7 +44,7 @@ genesofinterestWdown=na.omit(rownames(restaW)[forGOWdown])
 
 
 par(mfrow=c(1,1))
-plotMA(results,ylim=c(-12,12))
+plotMA(resta,ylim=c(-12,12))
 
 resultsNames(res) # lists the coefficients
 
