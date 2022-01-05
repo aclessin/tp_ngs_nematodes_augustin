@@ -6,3 +6,4 @@ for reads in *.gz
 do
     fastqc $reads --threads 1
 done
+
